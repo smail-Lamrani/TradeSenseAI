@@ -1,0 +1,391 @@
+.dashboard {
+    padding-top: 60px;
+    min-height: 100vh;
+}
+
+.dashboard-loading,
+.no-challenge {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 60px;
+}
+
+.no-challenge-content {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: var(--bg-card);
+    border-radius: var(--radius-xl);
+    max-width: 500px;
+}
+
+.no-challenge-content h2 {
+    margin-bottom: 1rem;
+}
+
+.no-challenge-content p {
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+}
+
+/* Welcome Banner */
+.welcome-banner {
+    background: linear-gradient(135deg, var(--surface) 0%, var(--primary) 100%);
+    border-radius: var(--radius-xl);
+    padding: 2.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.welcome-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 70%, rgba(99, 102, 241, 0.3) 0%, transparent 50%);
+}
+
+.welcome-content {
+    position: relative;
+    z-index: 1;
+}
+
+.welcome-banner h2 {
+    font-size: 1.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.welcome-banner p {
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+}
+
+.welcome-banner .highlight {
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+/* Header */
+.dashboard-header {
+    background: var(--bg-card);
+    padding: 2rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.challenge-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.challenge-info h1 {
+    font-size: 1.75rem;
+}
+
+.challenge-stats {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.stat-box {
+    background: var(--surface);
+    padding: 1rem 1.5rem;
+    border-radius: var(--radius-md);
+    text-align: center;
+    min-width: 140px;
+}
+
+.stat-box .stat-label {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 0.25rem;
+}
+
+.stat-box .stat-value {
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.stat-box.profit .stat-value {
+    color: var(--success);
+}
+
+.stat-box.loss .stat-value {
+    color: var(--danger);
+}
+
+/* Progress Section */
+.progress-section {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.progress-item {
+    background: var(--surface);
+    padding: 1rem 1.5rem;
+    border-radius: var(--radius-md);
+}
+
+.progress-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+    font-size: 0.875rem;
+}
+
+.progress-bar {
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.5s ease;
+}
+
+.progress-fill.success {
+    background: var(--gradient-success);
+}
+
+.progress-fill.danger {
+    background: var(--gradient-danger);
+}
+
+.danger-zone {
+    background: rgba(239, 68, 68, 0.2);
+}
+
+/* Dashboard Content */
+.dashboard-content {
+    padding: 2rem 0;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 2rem;
+}
+
+/* Chart Section */
+.chart-section {
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    position: relative;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.section-header h2 {
+    font-size: 1.25rem;
+}
+
+.symbol-select {
+    padding: 0.5rem 1rem;
+    background: var(--surface);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    font-size: 0.875rem;
+    cursor: pointer;
+}
+
+.symbol-select:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+/* Trade Disabled Overlay */
+.trade-disabled-overlay {
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+    background: rgba(99, 102, 241, 0.1);
+    border: 1px dashed var(--primary);
+    border-radius: var(--radius-md);
+    text-align: center;
+}
+
+.trade-disabled-overlay p {
+    margin-bottom: 1rem;
+    color: var(--text-secondary);
+}
+
+/* Sidebar */
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.positions-section,
+.trades-section,
+.prices-section {
+    padding: 1.5rem;
+}
+
+.positions-section h3,
+.trades-section h3,
+.prices-section h3 {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+.empty-state {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+/* Positions */
+.positions-list,
+.trades-list,
+.prices-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.position-item,
+.trade-item,
+.price-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem;
+    background: var(--surface);
+    border-radius: var(--radius-sm);
+}
+
+.position-symbol,
+.trade-symbol,
+.price-symbol {
+    font-weight: 600;
+}
+
+.position-qty {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.position-pnl {
+    font-weight: 600;
+}
+
+.position-pnl.profit {
+    color: var(--success);
+}
+
+.position-pnl.loss {
+    color: var(--danger);
+}
+
+/* Prices */
+.price-data {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.price-value {
+    font-weight: 600;
+}
+
+.price-change {
+    font-size: 0.75rem;
+}
+
+.price-change.up {
+    color: var(--success);
+}
+
+.price-change.down {
+    color: var(--danger);
+}
+
+/* Trades */
+.trade-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.trade-side {
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 700;
+}
+
+.trade-side.buy {
+    background: rgba(16, 185, 129, 0.2);
+    color: var(--success);
+}
+
+.trade-side.sell {
+    background: rgba(239, 68, 68, 0.2);
+    color: var(--danger);
+}
+
+.trade-details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    font-size: 0.875rem;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .challenge-stats {
+        flex-wrap: wrap;
+    }
+
+    .progress-section {
+        grid-template-columns: 1fr;
+    }
+
+    .welcome-banner {
+        padding: 1.5rem;
+    }
+
+    .welcome-banner h2 {
+        font-size: 1.25rem;
+    }
+}
