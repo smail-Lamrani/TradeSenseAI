@@ -7,9 +7,9 @@
 ![React](https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react)
 ![Flask](https://img.shields.io/badge/Flask-3.0-000000?style=flat-square&logo=flask)
 
-**La Première Prop Firm Assistée par IA pour l'Afrique**
+**🌍 La Première Prop Firm Assistée par IA pour l'Afrique**
 
-[Demo](#-demo) • [Installation](#-installation) • [Features](#-features) • [API](#-api-endpoints) • [Contributing](#-contributing)
+[✨ Features](#-features) • [🚀 Installation](#-installation) • [📡 API](#-api-endpoints) • [🎮 Usage](#-usage-guide)
 
 </div>
 
@@ -17,281 +17,263 @@
 
 ## 🎯 About
 
-TradeSense AI is a **Prop Trading SaaS platform** where users can:
-- Pay to enter trading challenges (Starter, Pro, Elite tiers)
-- Trade with virtual capital using real-time market data
-- Get evaluated against "Killer Rules" (loss limits & profit targets)
-- Become "Funded" traders upon passing the challenge
+**TradeSense AI** est une plateforme SaaS de **Prop Trading** où les utilisateurs peuvent :
+
+- 💳 Payer pour participer à des challenges de trading (Starter, Pro, Elite)
+- 📊 Trader avec du capital virtuel en utilisant des données de marché en temps réel
+- ⚖️ Être évalués selon les "Killer Rules" (limites de pertes & objectifs de profit)
+- 🏆 Devenir traders "Funded" en réussissant le challenge
 
 ---
 
 ## ✨ Features
 
-### 🏆 Challenge Engine
-- Virtual balance management ($5K - $50K)
-- **Killer Rules**: 5% daily loss, 10% total loss, 10% profit target
-- Automatic status updates (Active → Passed/Failed)
-
-### 💳 Payment System
-- Mock payment gateway (CMI, Crypto simulation)
-- PayPal integration with admin configuration
-- 3-tier pricing (200 DH, 500 DH, 1000 DH)
-
-### 📊 Real-time Dashboard
-- TradingView Lightweight Charts
-- Live prices from Yahoo Finance (US stocks, Crypto)
-- Morocco market data (Casablanca Stock Exchange)
-- AI-powered trading signals (Buy/Sell/Hold)
-
-### 🏅 Leaderboard
-- Top 10 traders ranking
-- Platform statistics (pass rate, total challenges)
+| Module | Description |
+|--------|-------------|
+| 🏆 **Challenge Engine** | Gestion des balances virtuelles ($5K-$50K), règles strictes (5% perte journalière, 10% perte totale, 10% objectif profit) |
+| 💳 **Payments** | Gateway mock (CMI, Crypto), intégration PayPal avec config admin |
+| 📊 **Dashboard** | Charts TradingView, prix en temps réel (Yahoo Finance + Bourse de Casablanca), signaux IA |
+| 🏅 **Leaderboard** | Top 10 traders, statistiques de la plateforme |
+| 👤 **Auth** | Inscription/Connexion avec JWT |
+| 🔧 **Admin Panel** | Gestion des utilisateurs, challenges, paiements, config PayPal |
 
 ---
 
 ## 🚀 Installation
 
-### Prerequisites
+### Prérequis
+
 - Python 3.10+
 - Node.js 20+
-- npm or yarn
+- npm ou yarn
 
-### 1️⃣ Clone the Repository
+### 1️⃣ Cloner le Repository
+
 ```bash
 git clone https://github.com/yourusername/tradesense-ai.git
 cd tradesense-ai
 ```
 
-### 2️⃣ Setup Backend
+### 2️⃣ Backend (Flask)
+
 ```bash
 cd backend
 
-# Create virtual environment (optional but recommended)
+# Environnement virtuel (recommandé)
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+venv\Scripts\activate  # Windows
+# source venv/bin/activate  # Linux/Mac
 
-# Install dependencies
+# Installer les dépendances
 pip install -r requirements.txt
 
-# Create environment file
-cp .env.example .env
-# Edit .env with your settings
+# Créer le fichier .env
+copy .env.example .env
 
-# Run the server
+# Lancer le serveur
 python app.py
 ```
 
-The backend will start at: `http://localhost:5000`
+> ✅ Backend disponible sur: `http://localhost:5000`
 
-### 3️⃣ Setup Frontend
+### 3️⃣ Frontend (React + Vite)
+
 ```bash
 cd frontend
 
-# Install dependencies
+# Installer les dépendances
 npm install
 
-# Run development server
+# Lancer le serveur de développement
 npm run dev
 ```
 
-The frontend will start at: `http://localhost:5173`
+> ✅ Frontend disponible sur: `http://localhost:5173`
 
 ---
 
-## 📁 Project Structure
+## 📁 Structure du Projet
 
 ```
 tradesense-ai/
-├── 📂 backend/
-│   ├── app.py              # Flask entry point
-│   ├── config.py           # Configuration classes
-│   ├── models.py           # SQLAlchemy models
-│   ├── requirements.txt    # Python dependencies
-│   ├── .env.example        # Environment template
-│   ├── 📂 routes/
-│   │   ├── auth.py         # Authentication
-│   │   ├── challenge.py    # Challenge management
-│   │   ├── trades.py       # Trade execution
-│   │   ├── payments.py     # Payment processing
-│   │   ├── market.py       # Market data
-│   │   ├── leaderboard.py  # Rankings
-│   │   └── admin.py        # Admin panel
-│   └── 📂 services/
-│       ├── challenge_engine.py  # Killer rules logic
-│       ├── market_data.py       # Price feeds
-│       └── ai_signals.py        # Trading signals
+├── backend/
+│   ├── app.py              # Point d'entrée Flask
+│   ├── config.py           # Configuration
+│   ├── models.py           # Modèles SQLAlchemy
+│   ├── requirements.txt    # Dépendances Python
+│   ├── routes/
+│   │   ├── auth.py         # Authentification
+│   │   ├── challenge.py    # Gestion des challenges
+│   │   ├── trades.py       # Exécution des trades
+│   │   ├── payments.py     # Paiements
+│   │   ├── market.py       # Données de marché
+│   │   ├── leaderboard.py  # Classement
+│   │   └── admin.py        # Panel admin
+│   └── services/
+│       ├── challenge_engine.py  # Logique des Killer Rules
+│       ├── market_data.py       # Prix (yfinance + scraping)
+│       └── ai_signals.py        # Signaux de trading
 │
-├── 📂 frontend/
-│   ├── 📂 src/
-│   │   ├── App.jsx         # Main app + routing
-│   │   ├── index.css       # Global styles
-│   │   ├── 📂 components/
-│   │   │   ├── Navbar.jsx
-│   │   │   ├── Chart.jsx
-│   │   │   ├── AISignals.jsx
-│   │   │   └── TradePanel.jsx
-│   │   └── 📂 pages/
-│   │       ├── LandingPage.jsx
-│   │       ├── Dashboard.jsx
-│   │       ├── Pricing.jsx
-│   │       ├── Leaderboard.jsx
-│   │       ├── Auth.jsx
-│   │       └── AdminPanel.jsx
-│   └── package.json
+├── frontend/
+│   └── src/
+│       ├── App.jsx         # App principale + routing
+│       ├── index.css       # Styles globaux (dark theme)
+│       ├── components/
+│       │   ├── Navbar.jsx
+│       │   ├── Chart.jsx
+│       │   ├── AISignals.jsx
+│       │   └── TradePanel.jsx
+│       └── pages/
+│           ├── LandingPage.jsx
+│           ├── Dashboard.jsx
+│           ├── Pricing.jsx
+│           ├── Leaderboard.jsx
+│           ├── Auth.jsx
+│           └── AdminPanel.jsx
 │
-└── database.sql            # SQL schema
+└── database.sql            # Schéma SQL
 ```
 
 ---
 
-## ⚙️ Environment Variables
+## ⚙️ Variables d'Environnement
 
-Create a `.env` file in the `backend/` directory:
+Créer un fichier `.env` dans le dossier `backend/`:
 
 ```env
-# Flask
-SECRET_KEY=your-super-secret-key-change-this
+SECRET_KEY=votre-cle-secrete
 FLASK_ENV=development
-
-# Database
 DATABASE_URL=sqlite:///tradesense.db
-
-# JWT
-JWT_SECRET_KEY=your-jwt-secret-key-change-this
-
-# CORS
+JWT_SECRET_KEY=votre-jwt-secret
 CORS_ORIGINS=http://localhost:5173,http://localhost:3000
-
-# Market Data
-MARKET_UPDATE_INTERVAL=30
-
-# PayPal (optional - configure via Admin Panel)
-PAYPAL_MODE=sandbox
 ```
 
 ---
 
 ## 📡 API Endpoints
 
-### Authentication
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | `/api/auth/register` | Create new account |
-| POST | `/api/auth/login` | Login & get token |
-| GET | `/api/auth/me` | Get current user |
+### 🔐 Authentication
 
-### Challenges
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| GET | `/api/challenges` | List user challenges |
-| GET | `/api/challenges/active` | Get active challenge |
-| GET | `/api/challenges/plans` | List available plans |
+| `POST` | `/api/auth/register` | Créer un compte |
+| `POST` | `/api/auth/login` | Connexion |
+| `GET` | `/api/auth/me` | Utilisateur actuel |
 
-### Trading
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | `/api/trades` | Execute a trade |
-| GET | `/api/trades` | List trade history |
-| GET | `/api/trades/positions` | Get open positions |
+### 🏆 Challenges
 
-### Market Data
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| GET | `/api/market/prices` | Get all prices |
-| GET | `/api/market/signals` | Get AI signals |
+| `GET` | `/api/challenges` | Liste des challenges |
+| `GET` | `/api/challenges/active` | Challenge actif |
+| `GET` | `/api/challenges/plans` | Plans disponibles |
 
-### Payments
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/payments/plans` | List pricing plans |
-| POST | `/api/payments/checkout` | Process payment |
+### 💹 Trading
 
-### Leaderboard
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| GET | `/api/leaderboard` | Top 10 traders |
-| GET | `/api/leaderboard/stats` | Platform stats |
+| `POST` | `/api/trades` | Exécuter un trade |
+| `GET` | `/api/trades` | Historique des trades |
+| `GET` | `/api/trades/positions` | Positions ouvertes |
+
+### 📊 Market Data
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/api/market/prices` | Tous les prix |
+| `GET` | `/api/market/signals` | Signaux IA |
+
+### 💳 Payments
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/api/payments/plans` | Plans tarifaires |
+| `POST` | `/api/payments/checkout` | Paiement |
+
+### 🏅 Leaderboard
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/api/leaderboard` | Top 10 traders |
+| `GET` | `/api/leaderboard/stats` | Statistiques |
 
 ---
 
 ## 🎮 Usage Guide
 
-### 1. Register/Login
-Go to `/auth` and create an account or login.
+### Étape 1: Inscription
+Allez sur `/auth` et créez un compte.
 
-### 2. Purchase a Challenge
-- Navigate to `/pricing`
-- Select a plan (Starter, Pro, or Elite)
-- Complete the mock payment
+### Étape 2: Acheter un Challenge
+- Naviguez vers `/pricing`
+- Sélectionnez un plan (Starter 200DH, Pro 500DH, Elite 1000DH)
+- Complétez le paiement (mock)
 
-### 3. Start Trading
-- Access your dashboard at `/dashboard`
-- View charts and AI signals
-- Execute trades using the trading panel
+### Étape 3: Trader
+- Accédez au dashboard `/dashboard`
+- Consultez les charts et signaux IA
+- Exécutez des trades avec le panel de trading
 
-### 4. Pass the Challenge
-- Reach 10% profit to pass
-- Avoid 5% daily loss or 10% total loss
-- Check your status in the dashboard
+### Étape 4: Réussir le Challenge
+- Atteignez 10% de profit pour réussir
+- Évitez 5% de perte journalière ou 10% de perte totale
+- Consultez votre statut dans le dashboard
 
 ---
 
 ## 🛠️ Tech Stack
 
-| Layer | Technology |
-|-------|------------|
-| **Backend** | Python, Flask, SQLAlchemy |
+| Couche | Technologie |
+|--------|-------------|
+| **Backend** | Python, Flask, SQLAlchemy, Flask-JWT-Extended |
 | **Frontend** | React 19, Vite, React Router |
 | **Database** | SQLite (dev), PostgreSQL (prod) |
 | **Charts** | TradingView Lightweight Charts |
 | **Market Data** | Yahoo Finance API, Web Scraping |
-| **Auth** | JWT (Flask-JWT-Extended) |
-| **Styling** | Custom CSS, Dark Theme |
+| **Styling** | Custom CSS, Dark Theme Premium |
 
 ---
 
-## 🚢 Deployment
+## 🚢 Déploiement
 
-### Backend (Render.com)
-1. Create a new Web Service
-2. Connect your GitHub repo
-3. Set build command: `pip install -r requirements.txt`
-4. Set start command: `gunicorn app:app`
-5. Add environment variables
+### Backend → Render.com
 
-### Frontend (Vercel)
-1. Import project from GitHub
-2. Set root directory to `frontend`
-3. Add `VITE_API_URL` env variable pointing to your backend
+```bash
+# Build command
+pip install -r requirements.txt
+
+# Start command
+gunicorn app:app
+```
+
+### Frontend → Vercel
+
+1. Importer le projet depuis GitHub
+2. Définir le répertoire racine: `frontend`
+3. Ajouter variable: `VITE_API_URL=https://votre-backend.onrender.com/api`
 
 ---
 
 ## 🤝 Contributing
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+1. Fork le repo
+2. Créer une branche (`git checkout -b feature/amazing-feature`)
+3. Commit (`git commit -m 'Add amazing feature'`)
+4. Push (`git push origin feature/amazing-feature`)
+5. Ouvrir une Pull Request
 
 ---
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-## 👨‍💻 Author
-
-Built with ❤️ for the African trading community.
+MIT License - voir le fichier [LICENSE](LICENSE) pour plus de détails.
 
 ---
 
 <div align="center">
 
-**[⬆ Back to Top](#-tradesense-ai---prop-trading-platform)**
+**Construit avec ❤️ pour la communauté de trading africaine**
+
+[⬆ Retour en haut](#-tradesense-ai---prop-trading-platform)
 
 </div>
-#   T r a d e S e n s e A I  
- 
