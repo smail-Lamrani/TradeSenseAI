@@ -17,13 +17,27 @@ def admin_required(f):
     @wraps(f)
     @jwt_required()
     def decorated_function(*args, **kwargs):
-        user_id = get_jwt_identity()
-        user = User.query.get(user_id)
-        
-        if not user or not user.is_admin:
-            return jsonify({'error': 'Admin access required'}), 403
-        
-        return f(*args, **kwargs)
+        try:
+            user_id = get_jwt_identity()
+            # Convert to int (JWT identity is now a string)
+            user_id = int(user_id) if isinstance(user_id, str) else user_id
+            print(f"[ADMIN] Checking admin access for user_id: {user_id}")
+            
+            user = User.query.get(user_id)
+            
+            if not user:
+                print(f"[ADMIN] User {user_id} not found in database")
+                return jsonify({'error': 'User not found'}), 404
+            
+            if not user.is_admin:
+                print(f"[ADMIN] User {user.email} is not an admin")
+                return jsonify({'error': f'Admin access required. User {user.email} is not an admin.'}), 403
+            
+            print(f"[ADMIN] Access granted for {user.email}")
+            return f(*args, **kwargs)
+        except Exception as e:
+            print(f"[ADMIN] Error checking admin access: {e}")
+            return jsonify({'error': str(e)}), 500
     
     return decorated_function
 

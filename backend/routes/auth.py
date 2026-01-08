@@ -48,8 +48,8 @@ def register():
     db.session.add(user)
     db.session.commit()
     
-    # Create access token
-    access_token = create_access_token(identity=user.id)
+    # Create access token (identity must be a string)
+    access_token = create_access_token(identity=str(user.id))
     
     return jsonify({
         'message': 'User registered successfully',
@@ -78,8 +78,8 @@ def login():
     if not user or not check_password_hash(user.password_hash, password):
         return jsonify({'error': 'Invalid email or password'}), 401
     
-    # Create access token
-    access_token = create_access_token(identity=user.id)
+    # Create access token (identity must be a string)
+    access_token = create_access_token(identity=str(user.id))
     
     return jsonify({
         'message': 'Login successful',
@@ -92,7 +92,7 @@ def login():
 @jwt_required()
 def get_current_user():
     """Get current authenticated user"""
-    user_id = get_jwt_identity()
+    user_id = int(get_jwt_identity())
     user = User.query.get(user_id)
     
     if not user:
@@ -105,7 +105,7 @@ def get_current_user():
 @jwt_required()
 def update_profile():
     """Update user profile"""
-    user_id = get_jwt_identity()
+    user_id = int(get_jwt_identity())
     user = User.query.get(user_id)
     
     if not user:

@@ -18,7 +18,7 @@ trades_bp = Blueprint('trades', __name__, url_prefix='/api/trades')
 @jwt_required()
 def execute_trade():
     """Execute a new trade (buy or sell)"""
-    user_id = get_jwt_identity()
+    user_id = int(get_jwt_identity())
     data = request.get_json()
     
     if not data:
@@ -183,7 +183,7 @@ def _execute_sell(challenge, symbol, quantity, price):
 @jwt_required()
 def get_trades():
     """Get trade history for active challenge"""
-    user_id = get_jwt_identity()
+    user_id = int(get_jwt_identity())
     
     challenge = Challenge.query.filter_by(user_id=user_id, status='active').first()
     
@@ -201,7 +201,7 @@ def get_trades():
 @jwt_required()
 def get_positions():
     """Get open positions for active challenge"""
-    user_id = get_jwt_identity()
+    user_id = int(get_jwt_identity())
     
     challenge = Challenge.query.filter_by(user_id=user_id, status='active').first()
     
@@ -229,7 +229,7 @@ def get_positions():
 @jwt_required()
 def get_challenge_trades(challenge_id):
     """Get all trades for a specific challenge"""
-    user_id = get_jwt_identity()
+    user_id = int(get_jwt_identity())
     
     challenge = Challenge.query.filter_by(id=challenge_id, user_id=user_id).first()
     

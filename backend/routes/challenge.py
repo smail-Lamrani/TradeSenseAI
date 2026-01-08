@@ -15,7 +15,7 @@ challenge_bp = Blueprint('challenges', __name__, url_prefix='/api/challenges')
 @jwt_required()
 def get_challenges():
     """Get all challenges for current user"""
-    user_id = get_jwt_identity()
+    user_id = int(get_jwt_identity())
     
     challenges = Challenge.query.filter_by(user_id=user_id).order_by(Challenge.created_at.desc()).all()
     
@@ -28,7 +28,7 @@ def get_challenges():
 @jwt_required()
 def get_active_challenge():
     """Get current active challenge for user"""
-    user_id = get_jwt_identity()
+    user_id = int(get_jwt_identity())
     
     challenge = Challenge.query.filter_by(user_id=user_id, status='active').first()
     
@@ -50,7 +50,7 @@ def get_active_challenge():
 @jwt_required()
 def get_challenge(challenge_id):
     """Get specific challenge by ID"""
-    user_id = get_jwt_identity()
+    user_id = int(get_jwt_identity())
     
     challenge = Challenge.query.filter_by(id=challenge_id, user_id=user_id).first()
     
@@ -64,7 +64,7 @@ def get_challenge(challenge_id):
 @jwt_required()
 def get_challenge_status(challenge_id):
     """Get challenge status with detailed metrics"""
-    user_id = get_jwt_identity()
+    user_id = int(get_jwt_identity())
     
     challenge = Challenge.query.filter_by(id=challenge_id, user_id=user_id).first()
     
@@ -118,7 +118,7 @@ def get_challenge_status(challenge_id):
 @jwt_required()
 def evaluate_challenge(challenge_id):
     """Manually trigger challenge evaluation"""
-    user_id = get_jwt_identity()
+    user_id = int(get_jwt_identity())
     
     challenge = Challenge.query.filter_by(id=challenge_id, user_id=user_id).first()
     

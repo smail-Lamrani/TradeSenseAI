@@ -21,7 +21,7 @@ def checkout():
     Mock payment gateway checkout
     Simulates payment processing and creates challenge on success
     """
-    user_id = get_jwt_identity()
+    user_id = int(get_jwt_identity())
     data = request.get_json()
     
     if not data:
@@ -86,7 +86,7 @@ def checkout():
 @jwt_required()
 def create_paypal_order():
     """Create PayPal order"""
-    user_id = get_jwt_identity()
+    user_id = int(get_jwt_identity())
     data = request.get_json()
     
     plan_id = data.get('plan_id')
@@ -122,7 +122,7 @@ def create_paypal_order():
 @jwt_required()
 def capture_paypal_order():
     """Capture PayPal order after approval"""
-    user_id = get_jwt_identity()
+    user_id = int(get_jwt_identity())
     data = request.get_json()
     
     order_id = data.get('order_id')
@@ -177,7 +177,7 @@ def capture_paypal_order():
 @jwt_required()
 def get_payment_history():
     """Get payment history for current user"""
-    user_id = get_jwt_identity()
+    user_id = int(get_jwt_identity())
     
     payments = Payment.query.filter_by(user_id=user_id).order_by(Payment.created_at.desc()).all()
     
